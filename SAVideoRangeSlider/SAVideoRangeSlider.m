@@ -191,6 +191,7 @@
 -(void)setSliderColor:(UIColor *)sliderColor {
     self.topBorder.backgroundColor = self.bottomBorder.backgroundColor = sliderColor;
     self.leftThumb.backgroundColor = self.rightThumb.backgroundColor = sliderColor;
+    _popoverBubble.backgroundColor = sliderColor;
 }
 
 -(UIColor *)sliderColor {
