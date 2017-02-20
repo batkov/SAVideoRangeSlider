@@ -25,4 +25,6 @@
 
 @interface SAResizibleBubble : UIView
 
+@property (nonatomic, strong) UIColor *sliderColor;
+
 @end

@@ -50,6 +50,11 @@
     UIColor* bubbleHighlightColor = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
     UIColor* bubbleStrokeColor = [UIColor colorWithRed: 0.173 green: 0.173 blue: 0.173 alpha: 1];
     
+    //// Color Declarations
+    if (self.sliderColor) {
+        bubbleGradientTop = bubbleGradientBottom = bubbleHighlightColor = bubbleStrokeColor = self.sliderColor;
+    }
+    
     //// Gradient Declarations
     NSArray* bubbleGradientColors = [NSArray arrayWithObjects:
                                      (id)bubbleGradientTop.CGColor,
@@ -59,10 +64,10 @@
     
     //// Shadow Declarations
     UIColor* outerShadow = [UIColor blackColor];
-    CGSize outerShadowOffset = CGSizeMake(0.1, 6.1);
-    CGFloat outerShadowBlurRadius = 13;
+    CGSize outerShadowOffset = CGSizeMake(0, 0);
+    CGFloat outerShadowBlurRadius = 0;
     UIColor* highlightShadow = bubbleHighlightColor;
-    CGSize highlightShadowOffset = CGSizeMake(0.1, 2.1);
+    CGSize highlightShadowOffset = CGSizeMake(0, 0);
     CGFloat highlightShadowBlurRadius = 0;
     
     //// Frames
@@ -126,9 +131,9 @@
     
     CGContextRestoreGState(context);
     
-    [bubbleStrokeColor setStroke];
-    bubblePath.lineWidth = 1;
-    [bubblePath stroke];
+    //[bubbleStrokeColor setStroke];
+    //bubblePath.lineWidth = 1;
+    //[bubblePath stroke];
     
     
     //// Cleanup

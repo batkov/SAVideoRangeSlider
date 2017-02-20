@@ -31,10 +31,10 @@
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIView *centerView;
 @property (nonatomic, strong) NSURL *videoUrl;
-@property (nonatomic, strong) UIView *leftThumb;
-@property (nonatomic, strong) UIView *rightThumb;
+@property (nonatomic, strong) SASliderLeft *leftThumb;
+@property (nonatomic, strong) SASliderRight *rightThumb;
 @property (nonatomic) CGFloat frame_width;
-@property (nonatomic, strong) UIView *popoverBubble;
+@property (nonatomic, strong) SAResizibleBubble *popoverBubble;
 
 @end
 
@@ -87,11 +87,11 @@
         [self addSubview:_bottomBorder];
         
         
-        _leftThumb = [[UIView alloc] initWithFrame:CGRectMake(0, 0, thumbWidth, frame.size.height)];
+        _leftThumb = [[SASliderLeft alloc] initWithFrame:CGRectMake(0, 0, thumbWidth, frame.size.height)];
         _leftThumb.contentMode = UIViewContentModeLeft;
         _leftThumb.userInteractionEnabled = YES;
         _leftThumb.clipsToBounds = YES;
-        _leftThumb.backgroundColor = kAppleColor;
+        _leftThumb.opaque = NO;
         _leftThumb.layer.borderWidth = 0;
         [self addSubview:_leftThumb];
         
@@ -100,12 +100,12 @@
         [_leftThumb addGestureRecognizer:leftPan];
         
         
-        _rightThumb = [[UIView alloc] initWithFrame:CGRectMake(0, 0, thumbWidth, frame.size.height)];
+        _rightThumb = [[SASliderRight alloc] initWithFrame:CGRectMake(0, 0, thumbWidth, frame.size.height)];
         
         _rightThumb.contentMode = UIViewContentModeRight;
         _rightThumb.userInteractionEnabled = YES;
         _rightThumb.clipsToBounds = YES;
-        _rightThumb.backgroundColor = kAppleColor;
+        _rightThumb.opaque = NO;
         [self addSubview:_rightThumb];
         
         UIPanGestureRecognizer *rightPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightPan:)];
@@ -125,9 +125,9 @@
         [_centerView addGestureRecognizer:centerPan];
         
         
-        _popoverBubble = [[UIView alloc] initWithFrame:CGRectMake(0, -50, 100, 50)];
+        _popoverBubble = [[SAResizibleBubble alloc] initWithFrame:CGRectMake(0, -50, 100, 50)];
         _popoverBubble.alpha = 0;
-        _popoverBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8];
+        _popoverBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         [self addSubview:_popoverBubble];
         
         
@@ -190,8 +190,8 @@
 
 -(void)setSliderColor:(UIColor *)sliderColor {
     self.topBorder.backgroundColor = self.bottomBorder.backgroundColor = sliderColor;
-    self.leftThumb.backgroundColor = self.rightThumb.backgroundColor = sliderColor;
-    _popoverBubble.backgroundColor = sliderColor;
+    self.leftThumb.sliderColor = self.rightThumb.sliderColor = sliderColor;
+    _popoverBubble.sliderColor = sliderColor;
 }
 
 -(UIColor *)sliderColor {
