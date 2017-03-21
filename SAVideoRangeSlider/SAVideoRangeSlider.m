@@ -41,7 +41,7 @@
 @implementation SAVideoRangeSlider
 @synthesize leftPosition = _leftPosition, rightPosition =_rightPosition;
 
-#define SLIDER_BORDERS_SIZE 2.0f
+#define SLIDER_BORDERS_SIZE 3.0f
 #define BG_VIEW_BORDERS_SIZE 3.0f
 
 -(id)initWithFrame:(CGRect)frame asset:(AVAsset *)asset{
